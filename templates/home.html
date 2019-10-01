@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DC Crime Data Dashboard</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hero.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-nav" href="/">Justice League</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/map">Crime Map</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/time_wheel">Time Wheel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/line_chart">Crime Occurrences Analysis</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/machine_learning">Machine Learning</a>
+        </li>
+        <ul class="navbar-nav ml-auto">
+          <a class="nav-link" href="/bios">Get To Know the Team</a>
+        </ul>
+    </div>
+  </nav>
+  <div class="hero-image">
+      <div class="hero-text">
+        <h1>DC Crime Data Dashboard</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h3>Click on the below images to see each visualization</h3>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="col-md-12 text-center">
+          <h2>DC Crime Map</h2>
+          <h4>Access this page to see where crime is concentrated around the city.</h4>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-4">
+          <h4>Violent crime in DC has gone down 53.3% since 1995, according to the "Uniform Crime Report" conducted by the FBI. However, violent crime is stll three times the national average. While violent crime still plagues the city, administrators are working to mitigate the violent crime rate.</h4>
+        </div>
+        <div class="col-md-8">
+          <a href="/map">
+            <img src="{{ url_for('static', filename='images/crime_map.JPG') }}" alt="DC Crime Map" width="600" height="300"></a>
+         </a>
+        </div>
+      <!--this is where the line chart for crime goes-->
+      <div class="col-md-12 text-center">
+          <br>
+          <br>
+          <br>
+        <h2>DC Crime Occurrences Over the Year</h2>
+        <h4>Access this page to see which months crime occurs more frequently in each ward.</h4>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="col-md-4">
+        <h4>In Washington DC, all crime and violent crime happens across all wards, or sections, of the city. The highest concentration of ALL crime is in Ward 2, however, when you observe only violent crime, Ward 7 and Ward 8 have the most occurrences of crime. Ward 3 has the least concentration of violent crime. When observing the time of year, October is the month with the most crime, while February has the least.</h4>
+      </div>
+      <div class="col-md-8">
+        <a href="/line_chart">
+          <img src="{{ url_for('static', filename='images/line_chart.JPG') }}" alt="DC Crime Occurrences Over the Year"width="600" height="300"></a>
+       </a>
+      </div>
+      <!--this is where the time wheel for crime goes-->
+      <div class="col-md-12 text-center">
+          <br>
+          <br>
+          <br>
+          <h2>DC Crime Threat Analysis</h2>
+          <h4>Access this page to see what times of day have the highest concentration of crime.</h4>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="col-md-4">
+        <h4>A time wheel is a visualization used readily in the military to assess threats. Our time wheel analyzes the time of day that has the most crime. Our analysis found some unexpected trends.</h4>
+      </div>
+      <div class="col-md-8">
+        <a href="/time_wheel">
+          <img src="{{ url_for('static', filename='images/time_wheel.JPG') }}" alt="DC Threat Level Time Wheel"></a>
+       </a>
+      </div>
+    <!--this is where the machine learning algorithm for crime goes-->
+      <div class="col-md-12 text-center">
+          <br>
+          <br>
+          <br>
+          <h2>DC Crime Machine Learning</h2>
+          <h4>Access this page to learn about the machine learning process we used to predict crime in DC.</h4>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="col-md-4">
+        <h4>The goal of the machine learning portion of our project is to examine possible relationships and correlations between violent crime and socioeconomic conditions in Washington, D.C. While much of our overall application is devoted to dynamic visualizations of crime data across the city, we aim to apply machine learning in a way that attempts to explain what might drive the patterns of violent crime observed in the visualizations.</h4>
+      </div>
+      <div class="col-md-8">
+        <a href="/machine_learning">
+          <img src="{{ url_for('static', filename='images/machine_learning.JPG') }}" alt="DC Predictive Model" ></a>
+       </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+body{
+  background-color: white;
+}
+
+#barChart{
+  background-color: white;
+  border-radius: 6px;
+/*   Check out the fancy shadow  on this one */
+  box-shadow: 0 3rem 5rem -2rem rgba(0, 0, 0, 0.6);
+}

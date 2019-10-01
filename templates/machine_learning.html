@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<head>
+    <title>DC Crime Data Dashboard</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hero.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"></head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-nav" href="/">Justice League</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/map">Crime Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/time_wheel">Time Wheel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/line_chart">Crime Occurrences Analysis</a>
+                </li>
+                <li class="nav-item active">
+                        <a class="nav-link" href="/machine_learning">Machine Learning<span class="sr-only">(current)</span></a>
+                    </li>
+                <ul class="navbar-nav ml-auto">
+                    <a class="nav-link" href="/bios">Get To Know the Team</a>
+                </ul>
+            </div>
+            </nav>
+
+        <div class="hero-image">
+                <div class="hero-text">
+                    <h1>DC Crime Data Dashboard</h1>
+                    <p>Use the interactive charts below to explore the dataset</p>
+                </div>
+        </div>
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Socioeconomics and Violent Crime: Can we see a connection?</h2>
+                        <p>
+                            <h4><strong>This dashboard has visualized trends in violent crime in Washington, D.C., but what <em> explains</em> these trends?</strong></h4>
+                        </p>
+                        <p>Violent crime is a complicated and multifaceted problem. A large body of criminology research suggests that among many other personal and societal factors, the negative societal conditions of <a href="https://link.springer.com/article/10.1007/s00181-016-1068-6" target="_blank">unemployment</a>, <a href="https://link.springer.com/chapter/10.1007/978-0-306-48039-3_4" target="_blank">poverty</a>, and <a href="https://www.nber.org/papers/w20593" target="_blank">residential housing vacancy</a> may be strongly correlated with violent crime rates. Whether these conditions are predictors or results of violent crime, or are just in co-existence in certain urban areas, we believe that studying these variables could yield interesting relationships. The analysis includes five years of violent crime data (2014-2018) collected from the Metropolitan Police Department and socioeconomic data downloaded from the 2012-2016 American Community Survey Census Bureau 5-year Estimates, conducted by the Census Bureau.</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Police_Line_Crime_Scene_2498847226.jpg/800px-Police_Line_Crime_Scene_2498847226.jpg" alt="Police crime scene tape at night" width="700" height="300">
+                        <p>Photo by <a href="https://commons.wikimedia.org/wiki/User:Tony_Webster" target="_blank"> Tony Webster</a>, shared to Wikipedia Commons. <a href="https://creativecommons.org/licenses/by-nc/2.0/" target="_blank">CC BY-NC 2.0</a></p>
+                        <p><h4>Statistical Framework</h4></p>
+                        <p>A series of linear regression analyses were conducted on a dataset of violent crime incidents and socioeconomic variables counted at the Census “block group” geography level. This step allowed for a visual representation of variable relationship. The “test, train, split” method was then applied to segment the data into training and testing data, with a linear regression model being generated to fit the training data and be scored against the testing data. This process aims to see if the socioeconomic variables (“X” in our model) could be used to predict violent crime (“y”) frequencies. Mean squared error, r-squared scores, and residual plots were used to assess the effectiveness of the models. <br> <br></p>
+                        <p>For a full look at the analytical steps, as well as the data pre-processing workflows, please see the Jupyter Notebooks linked below.</p>
+                            <a href="https://github.com/jpw24/project-3-team2/blob/master/Regression.ipynb" target="_blank" class="btn btn-outline-success" role="button">Linear Regressions Jupyter Notebook</a>
+                            <a href="https://github.com/jpw24/project-3-team2/blob/master/ViolentCrime_SummaryStats.ipynb" target="_blank" class="btn btn-outline-success" role="button">Violent Crime Statistics (Data Processing)</a>
+                            <a href="https://github.com/jpw24/project-3-team2/blob/master/Socioecon_Data_Load.ipynb" target="_blank" class="btn btn-outline-success" role="button">Socioeconomic Statistics (Data Processing)</a>
+                            <br> <br>
+                            <h4>Results</h4>
+                            <p>This analysis did not find strong relationships or correlations between violent crime frequency and socioeconomic conditions at the block group level. While the charts generally showed increased crime with worsening socioeconomic conditions (higher rates of poverty, unemployment, and housing vacancy), strong determinations about relationships in the data could not be reached.</p>
+                            <p>These charts illustrate the relationships between each crime type and socioeconomic variable.</p>
+                    </div> 
+                </div>
+                <div class="row">
+                        <div class="col-md-3">
+                            <div class="hovereffect">
+                                <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/poverty_adw_v2.png" alt="" width="250" height="200">
+                                    <div class="overlay">
+                                        <h2>Poverty x ADW</h2>
+                                           <a class="info">r2: 0.299</a>
+                                           <a class="info">MSE: 596.47</a>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="hovereffect">
+                                <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/unemployment_adw_v2.png" alt="" width="250" height="200">
+                                    <div class="overlay">
+                                        <h2>Unemployment x ADW</h2>
+                                           <a class="info">r2: 0.278</a>
+                                           <a class="info">MSE: 614.32</a>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="hovereffect">
+                                <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/Vacancy_adw_v2.png" alt="" width="250" height="200">
+                                    <div class="overlay">
+                                        <h2>Vacancy x ADW</h2>
+                                           <a class="info">r2: -0.04</a>
+                                           <a class="info">MSE: 885.29</a>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="hovereffect">
+                                <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/pop_adw_v2.png" alt="" width="250" height="200">
+                                    <div class="overlay">
+                                        <h2>Population x ADW</h2>
+                                           <a class="info">r2: 0.278</a>
+                                           <a class="info">MSE: 614.32</a>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="hovereffect">
+                            <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/poverty_robbery_v2.png" alt="" width="250" height="200">
+                                <div class="overlay">
+                                    <h2>Poverty x Robbery</h2>
+                                       <a class="info">r2: 0.278</a>
+                                       <a class="info">MSE: 614.32</a>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="hovereffect">
+                            <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/unemployment_robbery_v3.png" alt="" width="250" height="200">
+                                <div class="overlay">
+                                    <h2>Unemployment x Robbery</h2>
+                                       <a class="info">r2: 0.299</a>
+                                       <a class="info">MSE: 596.47</a>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="hovereffect">
+                            <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/Vacancy_robbery_v3.png" alt="" width="250" height="200">
+                                <div class="overlay">
+                                    <h2>Vacancy x Robbery</h2>
+                                       <a class="info">r2: -0.028</a>
+                                       <a class="info">MSE: 1010.37</a>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="hovereffect">
+                            <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/pop_robbery_v2.png" alt="" width="250" height="200">
+                                <div class="overlay">
+                                    <h2>Population x Robbery</h2>
+                                       <a class="info">r2: 0.0846</a>
+                                       <a class="info">MSE: 898.99</a>
+                                </div>
+                        </div>
+                    </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/poverty_homicide_v2.png" alt="" width="250" height="200">
+                            <div class="overlay">
+                                <h2>Poverty x Homicide</h2>
+                                   <a class="info">r2: 0.342</a>
+                                   <a class="info">MSE: 6.174</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/unemployment_homicide_v2.png" alt="" width="250" height="200">
+                            <div class="overlay">
+                                <h2>Unemployment x Homicide</h2>
+                                   <a class="info">r2: 0.261</a>
+                                   <a class="info">MSE: 6.929</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/vacancy_homicide_v2.png" alt="" width="250" height="200">
+                            <div class="overlay">
+                                <h2>Vacancy x Homicide</h2>
+                                   <a class="info">r2: -0.05</a>
+                                   <a class="info">MSE: 9.86</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hovereffect">
+                        <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/pop_homicide_v2.png" alt="" width="250" height="200">
+                            <div class="overlay">
+                                <h2>Population x Homicide</h2>
+                                   <a class="info">r2: 0.106</a>
+                                   <a class="info">MSE: 8.387</a>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="hovereffect">
+                    <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/poverty_sexabuse_v2.png" alt="" width="250" height="200">
+                        <div class="overlay">
+                            <h2>Poverty x Sex Abuse</h2>
+                               <a class="info">r2: 0.065</a>
+                               <a class="info">MSE: 4.69</a>
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="hovereffect">
+                    <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/unemployment_sexabuse_v3.png" alt="" width="250" height="200">
+                        <div class="overlay">
+                            <h2>Unemployment x Sex Abuse</h2>
+                               <a class="info">r2: 0.126</a>
+                               <a class="info">MSE: 13.747</a>
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="hovereffect">
+                    <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/vacancy_sexabuse_v2.png" alt="" width="250" height="200">
+                        <div class="overlay">
+                            <h2>Vacancy x Sex Abuse</h2>
+                               <a class="info">r2: -0.049</a>
+                               <a class="info">MSE: 16.504</a>
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="hovereffect">
+                    <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/pop_sexabuse_v3.png" alt="" width="250" height="200">
+                        <div class="overlay">
+                            <h2>Population x Sex Abuse</h2>
+                               <a class="info">r2: 0.107</a>
+                               <a class="info">MSE: 14.042</a>
+                        </div>
+                </div>
+            </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/poverty_violentcrime_v3.png" alt="" width="250" height="200">
+                    <div class="overlay">
+                        <h2>Poverty x Violent Crimes</h2>
+                           <a class="info">r2: 0.191</a>
+                           <a class="info">MSE: 3124.82</a>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/unemployment_violentcrime_v3.png" alt="" width="250" height="200">
+                    <div class="overlay">
+                        <h2>Unemployment x Violent Crimes</h2>
+                           <a class="info">r2: 0.17</a>
+                           <a class="info">MSE: 3207.46</a>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/vacancy_violentcrime_v2.png" alt="" width="250" height="200">
+                    <div class="overlay">
+                        <h2>Vacancy x Violent Crimes</h2>
+                           <a class="info">r2: -0.041</a>
+                           <a class="info">MSE: 4025.77</a>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="hovereffect">
+                <img class="img-responsive" src="https://raw.githubusercontent.com/jpw24/project-3-team2/master/RegressionResults/pop_violentcrime_v2.png" alt="" width="250" height="200">
+                    <div class="overlay">
+                        <h2>Population x Violent Crimes</h2>
+                           <a class="info">r2: 0.123</a>
+                           <a class="info">MSE: 3385.63</a>
+                    </div>
+            </div>
+        </div>
+</div>  
+    </body>
+    </html>

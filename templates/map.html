@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>DC Crime Data Dashboard</title>
+  <!-- Leaflet JS & CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+  crossorigin=""></script>
+
+  <!-- d3 JS -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <!-- Marker Cluster JS & CSS -->
+  <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+  <title>DC Crime Data Dashboard</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hero.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-nav" href="/">Justice League</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/map">Crime Map<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/time_wheel">Time Wheel</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/line_chart">Crime Occurrences Analysis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/machine_learning">Machine Learning</a>
+            </li>
+            <ul class="navbar-nav ml-auto">
+                <a class="nav-link" href="/bios">Get To Know the Team</a>
+            </ul>
+        </div>
+        </nav>
+  <div class="hero-image">
+      <div class="hero-text">
+        <h1>DC Crime Data Dashboard</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+  <div class="container">
+    <div class="row">
+      <br>
+      <br>
+      <div class="col-md-4">
+        <div class="well">
+          <br><br>
+          <h5>Filter by Crime Type and Ward:</h5>
+          <select style="color: black" id="selType"></select>
+          <select style="color: black" id="selWard"></select>
+          <button id="submit" type="submit" class="btn btn-default">Plot Data</button>
+          <!--onchange="optionChanged(this.value)-->
+          <!--onchange="optionChanged(this.value)-->
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+            <img src="https://raw.githubusercontent.com/jpw24/project-3-team2/tim/SocioGraph.png" alt="Map legend" width="600" height="100">
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div id="map-crime"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="{{ url_for('static', filename='js/logic.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/config.js') }}"></script>
+
+</body>
+
+</html>

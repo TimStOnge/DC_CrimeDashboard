@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<head>
+    <title>DC Crime Data Dashboard</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hero.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-nav" href="/">Justice League</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/map">Crime Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/time_wheel">Time Wheel</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/line_chart">Crime Occurrences Analysis<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/machine_learning">Machine Learning</a>
+                </li>
+                <ul class="navbar-nav ml-auto">
+                    <a class="nav-link" href="/bios">Get To Know the Team</a>
+                </ul>
+        </div>
+    </nav>
+
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1>DC Crime Data Dashboard</h1>
+            <p>Use the interactive charts below to explore the dataset</p>
+        </div>
+    </div>
+    <div class="container">
+        <br />
+        <div class="row">
+            <div clas="col-md-8 text-center">
+                <h3>Crime Occurrences Through The Year, by Ward</h3>
+                <p> Click on each ward and hover over the data points to understand trends.</p>
+            </div>
+        </div>
+        <h6>Filter by Crime Type:</h6>
+        <select style="color: black" id="selType"></select>
+        <button id="submit" type="submit" class="btn btn-default">Plot Data</button>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="col-md-1"></div>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+    <script>
+        moment().format();
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/crimes.js') }}"></script>
+</body>
+
+</HTML>

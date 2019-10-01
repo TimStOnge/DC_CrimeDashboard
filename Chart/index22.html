@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+body {
+  font-size: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #fff;
+  /* background-color: #111; */
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+
+.pie-container {
+  transition: padding .7s ease;
+  padding: 10px 13%;
+}
+
+#pieChart {
+  //border: green 1px solid;
+  //border-radius: 50%;
+  max-width: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  svg {
+    overflow: visible;
+    transition: width .7s ease;
+  }
+
+  path {
+    cursor: pointer;
+  }
+  
+  // inner-radius value sent to javascript
+  counter-reset: break-point 80; 
+}
+
+#pieText {
+  //border: 1px dotted;
+  overflow: visible;      // to see shadow
+  //white-space: nowrap;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //align-items: center;
+
+  .panel {
+    background-color: #111;
+    border: groove 4px #222;
+    box-shadow: 8px 10px 20px #000,
+      4px 5px 25px #000;
+    width: 100%;
+    height: 60%;
+    border-radius: 7px;
+    padding: 0 3px;
+    float: left;
+    transition: height .7s ease, padding .7s ease;
+
+    perspective: 650px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.content-wrapper {
+  overflow: hidden;
+  transform-style: preserve-3d;
+  border: 1px solid blue;
+    background-color: black;
+}
+
+
+
+// Responsive Text Mixin
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+// Responsive text mixin
+@mixin responsiveText ($minSize, $maxSize: 28px, $minWidth: 450px, $maxWidth: 900px) {
+
+
+  $mxS: strip-unit($maxSize);
+  $mnS: strip-unit($minSize);
+  $mxW: strip-unit($maxWidth);
+  $mnW: strip-unit($minWidth);
+
+  font-size: calc( #{$minSize} + (#{$mxS} - #{$mnS}) * (100vw - #{$minWidth}) / (#{$mxW} - #{$mnW}));
+
+@media screen and (max-width: $minWidth ) {
+  font-size: $minSize;
+}
+
+@media screen and (min-width: $maxWidth ) {
+  font-size: $maxSize;
+}
+
+}
+
+#segmentTitle, #segmentText {
+  text-shadow: 1px 1px 3px #000, 1px 1px 3px #000;
+  text-align: center;
+}
+
+#segmentTitle {
+  //width: 100%;
+  transition: padding .7s ease;
+  @include responsiveText(19px, 35px, 200px, 1314px);
+}
+
+#segmentText {
+  width: 100%;
+  transition: padding .7s ease, line-height .7s ease;
+  @include responsiveText(14px, 21px, 200px, 1314px);
+  line-height: 28px;
+}
+
+
+
+// Extra small devices (small phones, less than 360px)
+@media (max-width: 360px) {
+  div.pie-container {
+    padding: 10px 12%;
+
+    #pieChart {
+      counter-reset: break-point 40;
+
+      svg {
+        width: 100%;
+      }
+    }
+
+    #pieText {
+      margin-top: 15px;
+
+      .panel {
+        height: 230px;
+        padding: 0;
+
+        #segmentTitle {
+          padding: 2px 4px 4px;
+        }
+        #segmentText {
+          padding: 2px 4px 4px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 360.02px) and (max-width: 442px) {
+  div.pie-container {
+    padding: 10px 10%;
+    
+    #pieChart {
+      counter-reset: break-point 53;
+
+      svg {
+        width: 70%;
+      }
+    }
+
+    #pieText {
+      margin-top: 15px;
+      
+      .panel {
+        height: 210px;
+        padding: 0;
+
+        #segmentTitle {
+          padding: 4px;
+        }
+        #segmentText {
+          padding: 4px;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+}
+// Small/XS devices (portrait phones, less than 576px)
+@media (min-width: 442.02px) and (max-width: 575.98px) {
+  div.pie-container {
+    padding: 10px 10%;
+
+    #pieChart {
+      counter-reset: break-point 60;
+
+      svg {
+        width: 70%;
+      }
+    }
+
+    #pieText {
+      margin-top: 15px;
+
+      .panel {
+        height: 200px;
+        padding: 0;
+
+        #segmentTitle {
+          padding: 4px;
+        }
+        #segmentText {
+          padding: 0 4px 4px;
+          line-height: 21px;
+        }
+      }
+    }
+  }
+}
+// Small devices (smart phones/notebook phone, less than 638px wide)
+@media (min-width: 576px) and (max-width: 637.98px) {
+  div.pie-container {
+    padding: 10px 12%;
+
+    #pieChart {
+      counter-reset: break-point 70;
+
+      svg {
+        width: 60%;
+      }
+    }
+
+    #pieText {
+      margin-top: 20px;
+
+      .panel {
+        padding: 0;
+        height: 205px;
+
+        #segmentTitle {
+          padding: 8px;
+        }
+        #segmentText {
+          padding: 0 8px 8px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
+// Bootstrap col-md Breakpoint at 767px
+@media (min-width: 638px) and (max-width: 767px) {
+  div.pie-container {
+    padding: 10px 15%;
+
+    #pieChart {
+      counter-reset: break-point 80;
+
+      svg {
+        width: 60%;
+      }
+    }
+
+    #pieText {
+      margin-top: 20px;
+
+      .panel {
+        padding: 0 3px;
+        height: 270px;
+
+        #segmentTitle {
+          padding: 15px;
+        }
+        #segmentText {
+          padding: 15px;
+          line-height: 27px;
+        }
+      }
+    }
+  }
+}
+// Medium-Small Devices (tablets and smaller, 767px to 965px)
+@media (min-width: 767.02px) and (max-width: 965px) { 
+  div.pie-container {
+    padding: 10px 4%;
+
+    #pieChart {
+      counter-reset: break-point 50;
+    }
+
+    #pieText .panel {
+      height: 82%;
+      padding: 0;
+
+      #segmentTitle {
+        padding: 8px;
+      }
+      #segmentText {
+        padding: 0 8px 8px;
+        line-height: 23px;
+      }
+    }
+  }
+}
+// Medium-Large Devices (laptop, 965px to 1314px)
+@media (min-width: 965.02px) and (max-width: 1314px) {
+  div.pie-container {
+    padding: 10px 5%;
+
+    #pieChart {
+      counter-reset: break-point 60;
+    }
+
+    #pieText .panel {
+      height: 70%;
+
+      #segmentTitle {
+        padding: 10px;
+      }
+
+      #segmentText {
+        padding: 5px 10px 10px;
+      }
+    }
+  }
+}
+
+// Large Monitors (Smaller than mine)
+@media (min-width: 1314.02px) and (max-width: 1480px) {
+  div.pie-container {
+    padding: 10px 8%;
+
+    #pieChart {
+      counter-reset: break-point 70;
+    }
+    #pieText .panel {
+      #segmentText {
+        padding-top: 10px;
+      }
+    }
+  }
+}
+
+.secondary{
+  color: rgb(3, 3, 3);
+
+}
+</style>
+	<div class="responsive-map-container">
+      <!-- place the iframe code between here... -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1737.6221882978507!2d-98.48650795000005!3d29.421653200000023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c58aa57e6a56f%3A0xf08a9ad66f03e879!2sHenry+B.+Gonzalez+Convention+Center!5e0!3m2!1sen!2sus!4v1393884854786" width="600" height="450" frameborder="0" style="border:0"></iframe>
+      <!-- ... and here -->
+    </div>
+  
+    <ul class="flex-container">
+      <li class="flex-item classes">Graph 2</li>
+      <li class="flex-item classes">Graph 3</li>
+    </ul>
+    <hr>
+<div class="pie-container">
+    <div class="row">
+      <div class="col-md-5" id="pieChart"></div>
+
+      <div id="pieText" class="col-md-7 text-container">
+        <div class="panel">
+          <div class="content-wrapper">
+            <h1 id="segmentTitle">Select Fragment</h1>
+            <p id="segmentText">Detailed information about criminal activity by hour.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script type="text/javascript" src="code.js">
+  
+
+
+	</script>
+</body>
+</html>

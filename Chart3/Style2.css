@@ -1,0 +1,183 @@
+.flex-container {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	
+	-webkit-flex-flow: row wrap;
+	justify-content: space-around;
+  }
+  
+  .flex-item {
+	background: tomato;
+	padding: 5px;
+	margin-top: 10px;
+	
+	line-height: 150px;
+	color: white;
+	font-size: 3em;
+	text-align: center;
+  }
+
+
+  .responsive-map-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.responsive-map-container iframe,   
+.responsive-map-container object,  
+.responsive-map-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* #id {
+	background-color: red;
+}
+
+.classes{
+	background-color: green;
+}
+
+li{
+	background-color: blue;
+}
+
+body{
+	background-color: grey;
+}
+
+*{
+	everything
+} */
+
+.badge {
+  width: 4000px;
+  border-radius: 50%;
+  transform: rotate(-50deg);
+}
+
+div span {
+  font: 14px Monaco, MonoSpace;
+  height: 150px;
+  position: absolute;
+  color: black;
+  bottom: 500px;
+  width: 21px;
+  left: 300px;
+  top: 745px;
+  transform-origin: bottom center;
+}
+
+.char1 {
+  transform: rotate(10deg);
+}
+
+.char2 {
+  transform: rotate(25deg);
+}
+
+.char3 {
+  transform: rotate(40deg);
+}
+
+.char4 {
+  transform: rotate(56deg);
+}
+
+.char5 {
+  transform: rotate(71deg);
+}
+
+.char6 {
+  transform: rotate(86deg);
+}
+
+.char7 {
+  transform: rotate(100deg);
+}
+
+.char8 {
+  transform: rotate(116deg);
+}
+
+.char9 {
+  transform: rotate(130deg);
+}
+
+.char10 {
+  transform: rotate(144deg);
+}
+
+.char11 {
+  transform: rotate(159deg);
+}
+
+.char12 {
+  transform: rotate(174deg);
+}
+
+.char13 {
+  transform: rotate(188deg);
+}
+
+.char14 {
+  transform: rotate(204deg);
+}
+
+.char15 {
+  transform: rotate(218deg);
+}
+
+.char16 {
+  transform: rotate(233deg);
+}
+
+.char17 {
+  transform: rotate(248deg);
+}
+
+.char18 {
+  transform: rotate(262deg);
+}
+
+.char19 {
+  transform: rotate(277deg);
+}
+
+.char20 {
+  transform: rotate(291deg);
+}
+
+.char21 {
+  transform: rotate(307deg);
+}
+
+.char22 {
+  transform: rotate(322deg);
+}
+
+.char23 {
+  transform: rotate(336deg);
+}
+
+.char0 {
+  transform: rotate(355deg);
+}
+
+text {
+  color: black
+}

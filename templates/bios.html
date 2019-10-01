@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DC Crime Data Dashboard</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hero.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-nav" href="/">Justice League</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/map">Crime Map</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/time_wheel">Time Wheel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/line_chart">Crime Occurrences Analysis</a>
+        </li>
+        <li class="nav-item">
+                <a class="nav-link" href="/machine_learning">Machine Learning</a>
+            </li>
+        <ul class="navbar-nav ml-auto active">
+          <a class="nav-link" href="/bios">Get To Know the Team<span class="sr-only">(current)</span></a>
+        </ul>
+    </div>
+  </nav>
+  <div class="hero-image">
+      <div class="hero-text">
+        <h1>DC Crime Data Dashboard</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Meet the Team!</h1>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{{ url_for('static', filename='images/mario.JPG') }}" alt="Mario Cosby" width="250" height="300"></a>
+                <h2>Mario Cosby</h2>
+                <table class="table table-dark">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hometown:</td>
+                            <td>Washington, DC</td>
+                        </tr>
+                        <tr>
+                            <td>Nickname:</td>
+                            <td>Batman</td>
+                        </tr>
+                        <tr>
+                        <td>Occupation:</td>
+                        <td>Senior Intelligence Analyst</td>
+                        </tr>
+                        <tr>
+                        <td>Interests:</td>
+                        <td>Cryptocurrency, "pumping iron", Coding!!</td>
+                        </tr>
+                        <tr>
+                        <td>LinkedIn:</td>
+                        <td><a href="https://www.linkedin.com/in/mario-cosby-767576b1/">Mario Cosby</a></td>
+                        </tr>
+                    </tbody>
+                    </table>
+            </div>
+            <div class="col-md-6 text-center">
+                    <img src="{{ url_for('static', filename='images/reena.JPG') }}" alt="Reena T. Desai" width="250" height="300"></a>
+                    <h2>Reena T. Desai</h2>
+                    <table class="table table-dark">
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hometown:</td>
+                                <td>Fredericksburg, VA</td>
+                            </tr>
+                            <tr>
+                                <td>Nickname:</td>
+                                <td>Wonder Woman</td>
+                            </tr>
+                            <tr>
+                            <td>Occupation:</td>
+                            <td>Management and Program Analyst</td>
+                            </tr>
+                            <tr>
+                            <td>Interests:</td>
+                            <td>Improv classes, meditation, volunteering, Coding!!</td>
+                            </tr>
+                            <tr>
+                            <td>LinkedIn:</td>
+                            <td><a href="https://www.linkedin.com/in/reena-t-desai-49655558/">Reena T. Desai</a></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
+                <div class="col-md-6 text-center">
+                        <img src="{{ url_for('static', filename='images/tim.JPG') }}" alt="Tim St. Onge" width="250" height="300"></a>
+                        <h2>Tim St. Onge</h2>
+                        <table class="table table-dark">
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Hometown:</td>
+                                    <td>Bethesda, MD</td>
+                                </tr>
+                                <tr>
+                                    <td>Nickname:</td>
+                                    <td>Spiderman</td>
+                                </tr>
+                                <tr>
+                                <td>Occupation:</td>
+                                <td>Cartographer</td>
+                                </tr>
+                                <tr>
+                                <td>Interests:</td>
+                                <td>Maps, DC United, Coding!!</td>
+                                </tr>
+                                <tr>
+                                <td>LinkedIn:</td>
+                                <td><a href="https://www.linkedin.com/in/tim-st-onge-70624651/">Tim St. Onge</a></td>
+                                </tr>
+                            </tbody>
+                            </table>
+                    </div>
+            <div class="col-md-6 text-center">
+                <img src="{{ url_for('static', filename='images/jimmy.jpg') }}" alt="Jimmy White" width="250" height="300"></a>
+                <h2>Jimmy White</h2>
+                <table class="table table-dark">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hometown:</td>
+                            <td>Atlanta, GA</td>
+                        </tr>
+                        <tr>
+                            <td>Nickname:</td>
+                            <td>Aquaman</td>
+                        </tr>
+                        <tr>
+                        <td>Occupation:</td>
+                        <td>Financial Services Researcher</td>
+                        </tr>
+                        <tr>
+                        <td>Interests:</td>
+                        <td>Tottenham Hotspur, Running, Coding!!</td>
+                        </tr>
+                        <tr>
+                        <td>LinkedIn:</td>
+                        <td><a href="https://www.linkedin.com/in/jpw24/">Jimmy White</a></td>
+                        </tr>
+                    </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+    
+  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</body>
+
+</html>

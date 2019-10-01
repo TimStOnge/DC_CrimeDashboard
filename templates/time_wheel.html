@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<head>
+    <title>DC Crime Data Dashboard</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hero.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/d3pie.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/test31.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-nav" href="/">Justice League</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/map">Crime Map</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/time_wheel">Time Wheel<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/line_chart">Crime Occurrences Analysis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/machine_learning">Machine Learning</a>
+            </li>
+            <ul class="navbar-nav ml-auto">
+                <a class="nav-link" href="/bios">Get To Know the Team</a>
+            </ul>
+        </div>
+        </nav>
+  <div class="hero-image">
+      <div class="hero-text">
+        <h1>DC Crime Data Dashboard</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+<div class="container">
+    <h1 align="center">Time Wheel Analysis</h1>
+    <h5>Explore the data through the use of Time Wheel Analysis. Each time wheel represents the amount of violent crimes occurring during each hour of the day throughout 2018. 
+      
+    </h5>
+
+<div class ="row">
+    <ul class="legend">
+        <li><span class="lowactivity"></span> <h5>Low Activity (0-25 Occurences)</h5></li>
+        <li><span class="moderateactivity"></span><h5> Moderate Activity (25-50 Occurences)</h5></li>
+        <li><span class="highactivity"></span> <h5>High Activity (50+ Occurences)</h5></li>
+
+    </ul>
+  </div>
+  
+
+</div>
+<ul class="flex-container">
+  <li class="flex-item">
+  <br/>
+      <h1 align="center">Ward 1</h1>
+      <div id='pieChart1'></div>
+  </li>
+  <li class="flex-item">
+      <br/>
+      <h1 align="center">Ward 2</h1>
+      <div id='pieChart2'></div>
+  </li>
+  <li class="flex-item">
+      <br/>
+      <h1 align="center">Ward 3</h1>
+      <div id='pieChart3'></div>
+  </li>
+  <li class="flex-item">
+      <br/>
+      <br/>
+      <br/>
+      <h1 align="center">Ward 4</h1>
+      <div id='pieChart4'></div>
+  </li>
+  <li class="flex-item">
+      <br/>
+      <br/>
+      <br/>
+      <h1 align="center">Ward 5</h1>
+      <div id='pieChart5'></div>
+  </li>
+  <li class="flex-item">
+      <br/>
+      <br/>
+      <br/>
+      <h1 align="center">Ward 6</h1>
+      <div id='pieChart6'></div>
+  </li>
+  <li class="flex-item">
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <h1 align="center">Ward 7</h1>
+      <div id='pieChart7'></div>
+  </li>
+  <li class="flex-item">
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <h1 align="center">Ward 8</h1>
+      <div id='pieChart8'></div>
+  </li>
+</ul>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/d3pie.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/test31.js') }}"></script>
+</body>
+</html>
