@@ -1,5 +1,5 @@
 // Creating map object
-const API_ONE = "pk.eyJ1Ijoia3VsaW5pIiwiYSI6ImNpeWN6bjJ0NjAwcGYzMnJzOWdoNXNqbnEifQ.jEzGgLAwQnZCv9rA6UTfxQ";
+const API_ONE = "pk.eyJ1IjoidGltbXltYXBzIiwiYSI6ImNrMTl6ZmExbTA2eDQzY3FwMGdvOXE1bmcifQ.4GdVSdxFyPcKzlIHfI7viA";
 
 var myMap = L.map("map-crime", {
   center: [38.9072, -77.0369],
@@ -7,7 +7,7 @@ var myMap = L.map("map-crime", {
 });
 
 // Adding tile layer to the map
-L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidGltbXltYXBzIiwiYSI6ImNqdGxvM2M0bTB1NXIzeXBnd3QxcGx3Mm0ifQ.IwW87rAiKtVg2uATox5ftg", {
+L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
   maxZoom: 18,
   id: "mapbox.streets",
@@ -31,16 +31,6 @@ d3.json(ward_link).then(function(data) {
     style: styleInfoWards,
   }).addTo(myMap);
 });
-
-
-
-
-
-
-
-
-
-
 
 
 var link = "https://raw.githubusercontent.com/jpw24/project-3-team2/master/bg_test.geojson";
